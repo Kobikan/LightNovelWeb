@@ -1,14 +1,14 @@
-import React, {Component} from 'react'
+import React, {Component} from 'react';
 
 class RegisterView extends Component{
 
-  render(){
-    return (
-      <div>
+	render(){
+		return (
+			<div>
       
-      </div>
-    )
-  }
+			</div>
+		);
+	}
 }
 
 export default RegisterView;

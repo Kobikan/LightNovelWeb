@@ -7,10 +7,10 @@ import Routes from './services/routes';
 import history from './services/history';
 
 ReactDOM.render(
-  <Router history={history}>
-      <Routes />
-  </Router>,
-  document.getElementById('root')
+	<Router history={history}>
+		<Routes />
+	</Router>,
+	document.getElementById('root')
 );
 
 // If you want your app to work offline and load faster, you can change

@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import './tocPresenter';
-import './toc.css';
+import './homeController';
+import './home.css';
 
 class tocView extends Component{
   constructor(props){
@@ -32,7 +32,7 @@ class tocView extends Component{
 	render(){
 		return (
 			<body>
-			
+
 			</body>
 
 		);

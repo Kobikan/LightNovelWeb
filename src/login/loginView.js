@@ -34,6 +34,13 @@ class LoginView extends Component{
     })
   }
 
+  goToHome(credentials){
+    history.push('/home',{
+      username: this.state.username,
+      password: this.state.password,
+    });
+  }
+
   async handleSubmit(event){
     this.setState({
       isLoading: false
@@ -50,9 +57,8 @@ class LoginView extends Component{
         this.setState({
         isLoading: false
       })
-      history.push('/toc');
-      }
-
+      this.goToHome(null);
+    }
   }
 	render(){
 		return (

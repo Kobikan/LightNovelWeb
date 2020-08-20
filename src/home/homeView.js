@@ -8,10 +8,13 @@ class tocView extends Component{
 		super(props);
 		this.handleUsername = this.handleUsername.bind(this);
 		this.handlePassword = this.handlePassword.bind(this);
+		this.handleSource = this.handleSource.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
 		this.state = {
 			username : '',
 			password: '',
+			source: 'rln',
+
 		};
 	}
 
@@ -27,13 +30,19 @@ class tocView extends Component{
 		});
 	}
 
+	handleSource(event){
+		this.setState({
+			source: event.target.value
+		});
+	}
+
 	handleSubmit(event){
 		event.preventDefault();
 	}
 	render(){
 		return (
 			<div>
-				<NavBar/>
+				<NavBar source= {this.state.source} onSourceChange = {this.handleSource} link="home"/>
 			</div>
 
 		);

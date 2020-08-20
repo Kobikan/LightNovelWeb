@@ -1,151 +1,54 @@
 import React from 'react';
-import clsx from 'clsx';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
 import List from '@material-ui/core/List';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
 import MenuBookIcon from '@material-ui/icons/MenuBook';
 import history from '../services/history';
 
 const drawerWidth = 240;
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    display: 'flex',
-  },
-  appBar: {
-    zIndex: theme.zIndex.drawer + 1,
-    marginLeft: theme.spacing(7) + 1,
-    [theme.breakpoints.up('sm')]: {
-      marginLeft: theme.spacing(9) + 1,
-    },
-      transition: theme.transitions.create(['width', 'margin'], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-  },
-  appBarShift: {
-    marginLeft: drawerWidth,
-    width: `calc(100% - ${drawerWidth}px)`,
-    transition: theme.transitions.create(['width', 'margin'], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-  },
-  menuButton: {
-    marginRight: "10%",
-  },
-  hide: {
-    display: 'none',
-  },
-  drawer: {
-    width: drawerWidth,
-    flexShrink: 0,
-    whiteSpace: 'nowrap',
-  },
-  drawerOpen: {
-    width: drawerWidth,
-    transition: theme.transitions.create('width', {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-  },
-  drawerClose: {
-    transition: theme.transitions.create('width', {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-    overflowX: 'hidden',
-    width: theme.spacing(7) + 1,
-    [theme.breakpoints.up('sm')]: {
-      width: theme.spacing(9) + 1,
-    },
-  },
-  toolbar: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'flex-end',
-    padding: theme.spacing(0, 1),
-    // necessary for content to be below app bar
-    ...theme.mixins.toolbar,
-  },
-  content: {
-    flexGrow: 1,
-    padding: theme.spacing(3),
-  },
-}));
-
-export default function NavBar() {
-  const classes = useStyles();
-  const theme = useTheme();
-  const [open, setOpen] = React.useState(false);
-
-  const handleDrawerOpen = () => {
-    setOpen(true);
-  };
-
-  const handleDrawerClose = () => {
-    setOpen(false);
-  };
-
+export default function NavBar(props) {
+  const nav = {
+      titles: ["Table Of Contents", "Categories"],
+      link: ["toc","categories"],
+  }
   return (
     <div>
-    <nav className={clsx("navbar navbar-expand-lg navbar-light bg-light" ,classes.appBar, {
-          [classes.appBarShift]: open,
-        })}>
-          <a class="navbar-brand" href="#">Navbar</a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-              <li class="nav-item active">
-                <a class="nav-link" onClick = {() => {
-                  history.push('/home');
-                }}>Home <span class="sr-only">(current)</span></a>
-              </li>
-            </ul>
-          </div>
-        </nav>
-    <div className={classes.root}
-    onMouseEnter ={() => {handleDrawerOpen()}}
-    onMouseLeave ={() => {handleDrawerClose()}}>
-      <Drawer
-        variant="permanent"
-        className={clsx(classes.drawer, {
-          [classes.drawerOpen]: open,
-          [classes.drawerClose]: !open,
-        })}
-        classes={{
-          paper: clsx({
-            [classes.drawerOpen]: open,
-            [classes.drawerClose]: !open,
-          }),
-        }}
-      >
-        <div className={classes.toolbar}>
-          <MenuBookIcon className = {classes.menuButton}/>
-        </div>
-        <Divider />
-        <List>
-          <ListItem button key={"Read Light Novels"}>
-            <ListItemIcon><MenuBookIcon/></ListItemIcon>
-            <ListItemText primary={"Read Light Novels"} />
-          </ListItem>
-        </List>
-      </Drawer>
-    </div>
+      <nav className="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="#">Navbar</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+              <ul class="navbar-nav mr-auto">
+                <li class={props.link == "home" ? "nav-item active" : "nav-item"}>
+                  <a class="nav-link" href="" onClick = {() => {
+                    history.push('/home');
+                  }}>Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class={props.link == "toc" ? "nav-item dropdown active" : "nav-item dropdown"}>
+                  <a class="nav-link dropdown-toggle" href="" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Table of Contents</a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="" onClick = {() => {
+                      history.push('/toc',{source: props.source});
+                    }}>Read Light Novels</a>
+                  </div>
+                </li>
+                <li class={props.link == "categories" ? "nav-item active" : "nav-item"}>
+                  <a class="nav-link" href="" onClick = {() => {
+                    history.push('/categories');
+                  }}>Categories</a>
+                </li>
+              </ul>
+              { props.link == "toc" ? <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search Novels" aria-label="Search"/>
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+              </form> : <div/> }
+            </div>
+          </nav>
     </div>
   );
 }

@@ -1,0 +1,13 @@
+::-webkit-scrollbar {
+width: 0px;
+}
+::-webkit-scrollbar-thumb {
+background: #FF0000;
+}
+.novels{
+  overflow: hidden;
+}
+.novels-list {
+  height: 80vh;
+  overflow-y: scroll;
+}

@@ -16,7 +16,7 @@ class LoginView extends Component{
 		this.handlePassword = this.handlePassword.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
 		this.state = {
-			username : '',
+			email : '',
 			password: '',
 			isLoading: false,
 		};
@@ -36,7 +36,7 @@ class LoginView extends Component{
 
 	goToHome(credentials){
 		history.push('/home',{
-			username: this.state.username,
+			email: this.state.email,
 			password: this.state.password,
 		});
 	}
@@ -56,6 +56,10 @@ class LoginView extends Component{
 		if(res == null){
 			this.setState({
 				isLoading: false
+			});
+			window.localStorage.setItem('credentials', {
+				email: email,
+				password:password
 			});
 			this.goToHome(null);
 		}

@@ -48,10 +48,10 @@ class tocView extends Component{
 					<h1 class="display-4">Table Of Contents</h1>
 					<div class="list-group novels-list">
 					{this.state.titles.map((obj, i) => {
+						console.log(obj)
 						return (
-							<a href="#" class="list-group-item list-group-item-action"
-							onClick = {() => {
-								history.push("/chapterList",obj)
+							<a href ='' class="list-group-item list-group-item-action" onClick = {() => {
+								history.push("/chapterList/" + obj.suffix, obj)
 							}}>{obj.name}</a>
 						)
 					})

@@ -1,3 +1,10 @@
-.card{
-  width: 18rem;
+.card-size{
+  width: 90vh;
+}
+.scroll{
+  overflow: hidden;
+}
+.scroll-list {
+  height: 100vh;
+  overflow-y: scroll;
 }

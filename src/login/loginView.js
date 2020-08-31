@@ -6,7 +6,7 @@ import history from '../services/history';
 const axios = require('axios');
 
 const instance = axios.create({
-	baseURL: 'http://localhost:3001',
+	baseURL: 'http://localhost:3001/dev',
 	timeout: 1000,
 });
 class LoginView extends Component{

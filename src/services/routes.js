@@ -12,8 +12,8 @@ const Routes = () => (
 			<Route path ="/" exact component={Login}/>
 			<Route path ="/home" exact component={Home}/>
 			<Route path ="/toc" exact component={TableOfContents}/>
+			<Route path ="/chapterList/:name/:chapterNumber" component={Chapter}/>
 			<Route path ="/chapterList/:name" component={ChapterList}/>
-			<Route path ="/chapterList/:name/:chapterNumber?" component={Chapter}/>
 			<Route path ="/register" exact component={Register}/>
 		</Switch>
 	</div>
